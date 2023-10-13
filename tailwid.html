@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/bd49e73b8b.js" crossorigin="anonymous"></script>
+    <style type="text/tailwindcss">
+      .avatar {
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1 class="text-3xl font-bold underline">Hello world!</h1> -->
+    <div class="bg-slate-100 pb-6 rounded">
+      <div class="flex items-center justify-between p-3">
+        <div class="">
+          <span class="block text-sm text-slate-600" id="greetings"></span>
+          <span class="text-base text-slate-800 font-semibold">Amanda Salasabila pradana</span>
+        </div>
+        <a href="">
+          <img
+            src="https://www.w3schools.com/w3images/avatar6.png"
+            alt="Avatar"
+            class="align-middle w-11 h-11 rounded-full shadow"
+          />
+        </a>
+      </div>
+
+      <div
+        class="block mt-2 mx-3 py-3 px-4 bg-gradient-to-r from-rose-700 to-rose-300 rounded-lg shadow"
+      >
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="mb-2 text-3xl font-bold text-white" id="degrees"></h1>
+            <span class="text-white text-base">Samarinda</span>
+          </div>
+          <img id="icon" src="" alt="" class="align-middle w-24 h-24" />
+        </div>
+      </div>
+    </div>
+    <div class="-mt-3 bg-white rounded-t-2xl p-3 mb-5">
+      <div class="grid grid-cols-3 gap-4 justify-items-center">
+        <div class="pt-2 text-center">
+          <a href="">
+            <i
+              class="fa-solid fa-chart-simple transition duration-300 text-2xl text-rose-700 block hover:bg-rose-500 hover:text-white rounded-lg p-2"
+            ></i>
+            <span class="font-semibold text-rose-700">Kehadiran</span>
+          </a>
+        </div>
+        <div class="pt-2 text-center">
+          <a href="">
+            <i
+              class="fa-solid fa-id-card text-2xl transition duration-300 text-2xl text-rose-700 block hover:bg-rose-500 hover:text-white rounded-lg p-2"
+            ></i>
+            <span class="font-semibold text-rose-700">Absensi</span>
+          </a>
+        </div>
+        <div class="pt-2">
+          <i class="fa-solid fa-chart-simple text-2xl"></i>
+        </div>
+        <div class="pt-2">
+          <i class="fa-solid fa-chart-simple text-2xl"></i>
+        </div>
+        <div class="pt-2">
+          <i class="fa-solid fa-chart-simple text-2xl"></i>
+        </div>
+      </div>
+      <div class="py-12 text-center text-rose-700">
+        <h1 class="font-bold text-xl mb-3">Butuh Bantuan?</h1>
+        <p class="text-base mb-5">
+          Hubungi <span class="italic font-semibold">Team Support</span> yang siap membantu
+        </p>
+        <a class="block p-3 bg-rose-500 text-white font-semibold rounded">Hubungi</a>
+      </div>
+    </div>
+
+    <script>
+      $.ajax({
+        type: "GET",
+        url: "http://spartacodingclub.shop/sparta_api/weather/samarinda",
+        data: {},
+        success: function (response) {
+          // let temp = response["temp"];
+          $("#degrees").text(response["temp"] + "°");
+          $("#icon").attr("src", response["icon"]);
+        },
+      });
+
+      var today = new Date();
+      var curHr = today.getHours();
+
+      if (curHr >= 0 && curHr < 6) {
+        $("#greetings").text("Ingat Tidur");
+      } else if (curHr >= 6 && curHr < 10) {
+        $("#greetings").text("Selamat Pagi");
+      } else if (curHr >= 10 && curHr < 14) {
+        $("#greetings").text("Selamat Siang");
+      } else if (curHr >= 14 && curHr < 17) {
+        $("#greetings").text("Selamat Sore");
+      } else {
+        $("#greetings").text("Selamat Malam");
+      }
+    </script>
+  </body>
+</html>
